@@ -5,6 +5,7 @@ class Node:
     
     def __init__(self, character):
         self.character = character    #character of node
+        self.children = {}
         for i in "abcdefghijklmnopqrstuv":
             self.children[i] = None    #children nodes
         self.frequent_child = None    #childnode with max frequency
@@ -39,6 +40,7 @@ class Trie:
                 current_node.parent_node.max_frequency_child = current_node.frequency
                 current_node.parent_node.frequent_child = current_node
                 current_node.parent_node.max_suffix = current_node.character + current_node.max_suffix
+            current_node = current_node.parent_node
             
         
     def predictWord(self, prefix):
