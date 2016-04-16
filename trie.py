@@ -17,7 +17,8 @@ class Node:
         if self.children[character] is None:    #Node doesn't exist
             self.children[character] = Node(character)    
             self.children[character].parent_node = self
-        else self.children[character].frequency+=1    #Node exists; Update freq
+        else:
+            self.children[character].frequency+=1    #Node exists; Update freq
         return self.children[character]
     
 class Trie:
@@ -33,8 +34,8 @@ class Trie:
         current_node = self.root_node
         for character in word:
             current_node = current_node.addChild(character)    #Add/Update all child nodes
-        while current_node not root_node:
-            if current_node.parent_node.max_frequency_child < current_node.frequency and current_node.parent_node.frequent_child not current_node:    #Update maximums for all nodes
+        while current_node is not self.root_node:
+            if current_node.parent_node.max_frequency_child < current_node.frequency and current_node.parent_node.frequent_child is not current_node:    #Update maximums for all nodes
                 current_node.parent_node.max_frequency_child = current_node.frequency
                 current_node.parent_node.frequent_child = current_node
                 current_node.parent_node.max_suffix = current_node.character + current_node.max_suffix
