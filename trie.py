@@ -30,6 +30,6 @@ class Trie:
     def predictWord(self, prefix):
         if len(prefix) is 0:
             return ""
-        current_character = None
+        current_character = self.root_node
         
         
