@@ -6,7 +6,7 @@ class Node:
     def __init__(self, character):
         self.character = character    #character of node
         self.children = {}
-        for i in "abcdefghijklmnopqrstuv":
+        for i in "abcdefghijklmnopqrstuvwxyz":
             self.children[i] = None    #children nodes
         self.frequent_child = None    #childnode with max frequency
         self.max_frequency_child = 0    #maximum frequency of children
@@ -36,7 +36,7 @@ class Trie:
         for character in word:
             current_node = current_node.addChild(character)    #Add/Update all child nodes
         while current_node is not self.root_node:
-            if current_node.parent_node.max_frequency_child < current_node.frequency and current_node.parent_node.frequent_child is not current_node:    #Update maximums for all nodes
+            if current_node.parent_node.max_frequency_child < current_node.frequency:    #Update maximums for all nodes
                 current_node.parent_node.max_frequency_child = current_node.frequency
                 current_node.parent_node.frequent_child = current_node
                 current_node.parent_node.max_suffix = current_node.character + current_node.max_suffix
