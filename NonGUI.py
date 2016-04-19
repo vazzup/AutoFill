@@ -1,11 +1,12 @@
-import trie
+import trie, os
 print('Loading file...')
 myTrie = trie.Trie()
-with open('search_history.txt', 'r') as file:
-    print("File Loaded")
-    print("Retrieving Data...")
-    for line in file:
-        myTrie.addWord(line.strip())
+if os.path.exists('search_history.txt'):
+    with open('search_history.txt', 'r+') as file:
+        print("File Loaded")
+        print("Retrieving Data...")
+        for line in file:
+            myTrie.addWord(line.strip())
 print("Data Retrieved")
 print ("Add *word*: Add word to dictionary")
 print("Prefix *prefix*: Find most probable suffix for given prefix")
