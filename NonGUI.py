@@ -1,26 +1,38 @@
 import trie
-
-file = open('search_history.txt', 'w+')
-print("File Loaded")
+print('Loading file...')
 myTrie = trie.Trie()
-for line in file:
-    myTrie.addWord(line.strip())
+with open('search_history.txt', 'r') as file:
+    print("File Loaded")
+    print("Retrieving Data...")
+    for line in file:
+        myTrie.addWord(line.strip())
 print("Data Retrieved")
-print ("Add : Add word to dictionary")
-print("Prefix : Find most probable suffix for given prefix")
+print ("Add *word*: Add word to dictionary")
+print("Prefix *prefix*: Find most probable suffix for given prefix")
 print("Exit : Exit the application")
-command = input().strip().lower()
+command = input().strip().lower().split()
+word = ""
+file = open('search_history.txt', 'ab+')
+if len(command) is 2:
+    word = command[1]
+command = command[0]
 while command != "exit":
     if command == "add":
-        print("Enter word to be added")
-        word = input().strip()
         myTrie.addWord(word)
         print("Word added")
+        file.write(bytes(word+"\n", 'utf-8'))
     elif command == "prefix":
-        print("Enter prefix to be completed")
-        prefix = input().strip()
-        print(myTrie.predictWord(prefix))
+        suffix = myTrie.predictWord(word)
+        if len(suffix) is not 0:
+            print(suffix)
+        else :
+            print("No suggestions")
     else:
-        print("Incorrect command")
+        print(command, "is an invalid command")
     print("Enter new command")
-    command = input().strip()
+    command = input().strip().lower().split()
+    if len(command) is 2:
+        word = command[1]
+    command = command[0]
+file.close()
+print("Goodbye!")
