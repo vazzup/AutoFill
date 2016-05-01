@@ -1,4 +1,4 @@
-import trie, os, sqlite3
+import trie, sqlite3
 print('Loading database...')
 myTrie = trie.Trie()
 myConnection = sqlite3.connect('myDatabase.db')
