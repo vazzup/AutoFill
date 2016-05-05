@@ -1,9 +1,19 @@
 #AutoFill
 This is a program to implement realtime word suggestions in text input fields.<br />
-Uses Python 3+.<br />
-Dependencies:<br />
-.SQLite3<br />
-.GTK+3<br />
-.PyGObject<br />
-Known Bugs:<br />
-+None
+###Dependencies:<br />
+<ul>
+<li>SQLite3</li>
+<li>GTK+3</li>
+<li>PyGObject</li>
+</ul>
+###Known Bugs:<br />
+<ul>
+<li>Can't handle characters apart from the alphabet</li>
+<li>Isn't case sensitive</li>
+</ul>
+###Upcoming Features:
+<ul>
+<li>Case sensitivity</li>
+<li>Suggest multiple choices</li>
+<li>Suggest com-plete sentences</li>
+</ul>

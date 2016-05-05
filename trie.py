@@ -1,8 +1,6 @@
 class Node:
-
     """This class represents Nodes of Tries. The constructor expects a character
     as a parameter for the Node"""
-
     def __init__(self, character):
         self.character = character    #character of node
         self.children = {}
@@ -15,6 +13,7 @@ class Node:
         self.parent_node = None    #node of origination
 
     def addChild(self, character):
+        """Create child node for current node. Return value is pointer to child node"""
         if self.children[character] is None:    #Node doesn't exist
             self.children[character] = Node(character)
             self.children[character].parent_node = self

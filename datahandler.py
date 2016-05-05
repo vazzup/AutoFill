@@ -2,6 +2,7 @@ import trie, sqlite3, gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 class DataHandler:
+    """Class to handle data from sqlite database"""
     def __init__(self):
         """Constructor;
            myTrie - Trie to predict words
@@ -22,7 +23,7 @@ class DataHandler:
         self.maxnum += 1
 
     def getPrediction(self, text):
-        """Returns ListStore containing prediction to ComboBox"""
+        """Returns ListStore containing prediction"""
         suffix=self.myTrie.predictWord(text)
         liststore = Gtk.ListStore(str)
         if suffix is not "":
@@ -37,6 +38,5 @@ class DataHandler:
         self.myConnection.commit()
 
     def close(self):
+        """Called when operations are done"""
         myCursor.close()
-
-dataHandler = DataHandler()
