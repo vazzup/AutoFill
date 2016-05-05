@@ -15,5 +15,5 @@ This is a program to implement realtime word suggestions in text input fields.<b
 <ul>
 <li>Case sensitivity</li>
 <li>Suggest multiple choices</li>
-<li>Suggest com-plete sentences</li>
+<li>Suggest complete sentences</li>
 </ul>
