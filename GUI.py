@@ -34,15 +34,20 @@ class MyWindow(Gtk.Window):
         """Called when entry is changed. Gets prediction ListStore from data
            handler and updates entryCompletion"""
         text = entry.get_text().lower()
-        print("Keypress detected")
-        self.entryCompletion.set_model(self.dataHandler.getPrediction(text))
-
+        text = text.strip().split()
+        sz = len(text)-1
+        if sz>= 0:
+            text = text[sz].strip()
+            #print("Keypress detected")
+            self.liststore = self.dataHandler.getPrediction(text)
+            self.entryCompletion.set_model(self.liststore)
+            
     def onButtonClickEvent(self, button):
         """Called when button is clicked. Adds entry key to trie, and database"""
-        self.dataHandler.addUnknownWord(self.entry.get_text().lower())
+        self.dataHandler.addUnknownWord(self.entry.get_text().lower().strip())
         self.entry.set_text("")
         print("Text added")
-            
+
 window = MyWindow("AutoFill")
 window.connect("delete-event", Gtk.main_quit)
 window.show_all()

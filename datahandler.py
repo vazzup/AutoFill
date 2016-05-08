@@ -28,14 +28,17 @@ class DataHandler:
         liststore = Gtk.ListStore(str)
         if suffix is not "":
             liststore.append([text + suffix])
+        #print(text + suffix)
         return liststore
 
     def addUnknownWord(self, text):
         """Adds unknown text to trie and sqlite"""
-        self.myTrie.addWord(text)
-        self.myCursor.execute("""insert into myStrings values(?, ?)""", (self.maxnum, text))
-        self.maxnum+=1
-        self.myConnection.commit()
+        text = text.split()
+        for word in text:
+            self.myTrie.addWord(word)
+            self.myCursor.execute("""insert into myStrings values(?, ?)""", (self.maxnum, word))
+            self.maxnum+=1
+            self.myConnection.commit()
 
     def close(self):
         """Called when operations are done"""
