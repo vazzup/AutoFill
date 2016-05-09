@@ -24,6 +24,9 @@ class DataHandler:
 
     def getPrediction(self, text):
         """Returns ListStore containing prediction"""
+        liststore = Gtk.ListStore(str)
+        if text is "":
+            return liststore
         temp2 = text
         text = text.strip().split()
         temp = ""
@@ -32,7 +35,6 @@ class DataHandler:
             temp+=" "
         text = text[-1]
         suffix=self.myTrie.predictWord(text)
-        liststore = Gtk.ListStore(str)
         if suffix is not "":
             if temp is not " ":
                 liststore.append([temp + text + suffix])
