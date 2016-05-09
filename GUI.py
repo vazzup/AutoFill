@@ -34,13 +34,8 @@ class MyWindow(Gtk.Window):
         """Called when entry is changed. Gets prediction ListStore from data
            handler and updates entryCompletion"""
         text = entry.get_text().lower()
-        text = text.strip().split()
-        sz = len(text)-1
-        if sz>= 0:
-            text = text[sz].strip()
-            #print("Keypress detected")
-            self.liststore = self.dataHandler.getPrediction(text)
-            self.entryCompletion.set_model(self.liststore)
+        #print("Keypress detected")
+        self.entryCompletion.set_model(self.dataHandler.getPrediction(text))
             
     def onButtonClickEvent(self, button):
         """Called when button is clicked. Adds entry key to trie, and database"""
